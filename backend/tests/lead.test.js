@@ -3,11 +3,15 @@ const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const env = require('../config/env');
 
-jest.mock('../config/db', () => ({
-  execute: jest.fn(),
-  end: jest.fn(),
-  getConnection: jest.fn().mockResolvedValue({ release: jest.fn() }),
-}));
+jest.mock('../config/db', () => {
+  const executeFn = jest.fn();
+  return {
+    execute: executeFn,
+    query: executeFn, // Map query to the same mock function
+    end: jest.fn(),
+    getConnection: jest.fn().mockResolvedValue({ release: jest.fn(), execute: executeFn, query: executeFn }),
+  };
+});
 
 const mockedDb = require('../config/db');
 
