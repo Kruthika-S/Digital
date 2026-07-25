@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files — NEVER commit real secrets
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+db_data/
+
+# Test coverage
+coverage/
